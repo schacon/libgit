@@ -1,0 +1,100 @@
+BASIC
+
+ git_init(path, bare = false)
+   create_initial_config(bare = false)
+   add_file(name, contents)
+
+ git_setup(path)
+
+
+OBJECTS 
+
+ git_get_object(sha)
+
+ git_type_to_flag(type)
+
+ git_object_from_sha(sha)
+
+ git_get_raw_object(sha1)
+
+ git_build_object_list_from_commit(sha)
+
+ git_build_object_list_from_tree(sha)
+
+ git_has_object?(sha1)
+
+ git_legacy_loose_object?(buf)
+
+ git_put_object(type, contents)
+
+
+PACKFILE
+
+ git_build_pack_file
+
+ git_write_pack(bits)
+
+ git_check_delta(sha)
+
+ git_unpack_delta_cached(sha)
+
+ git_unpack_object_header_gently(buf)
+
+ git_put_raw_object(content, type)
+
+ git_unpack_deltified(type, size)
+
+ git_get_data(size)
+
+ git_patch_delta(base, delta)
+
+ git_patch_delta_header_size(delta, pos)
+
+ git_read_pack_header
+
+ git_unpack_all(entries)
+
+ git_unpack_object(number)
+
+ git_unpack_compressed(type, size)
+
+
+SERVER
+
+ git_server_listen
+
+ git_receive_pack(stream)
+
+ git_upload_pack(stream)
+
+ git_write_refs(refs)
+
+ git_read_refs(stream)
+
+ git_refs
+
+ git_read_pack(stream)
+
+ git_packet_read_line
+
+ git_packet_flush
+
+ git_send_nack
+
+ git_send_refs
+
+ git_send_ref(path, sha)
+
+ git_write_server(data)
+
+ git_upload_pack(path)
+
+ git_receive_needs
+
+ git_upload_pack_file
+
+ git_read_header()
+
+ git_read_until_null(debug = false)
+
+

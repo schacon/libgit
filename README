@@ -1,0 +1,43 @@
+libGit Project
+=======================
+
+Why, oh why would anyone re-implement Git functionality in C?  Git is
+already written in C!
+
+There are two reasons for this insanity.  The first is that the core
+Git code is GPL'd, which means you can't embed it in any commercial or
+closed source distributed product.  We specifically want to do some 
+commercial stuff with Git and don't want to fork out to shell calls to
+do it.  
+
+The second major reason is that this library does not do any
+command line stuff and never will, so it's not really competing with
+Git for anything.  It is a linked library and is meant to be used by
+other programs only.  It is being built for an Obj-C program, but should
+be able to be built as bindings for Ruby, Perl or Python (or whatever).
+
+It is not designed to do _everything_ that the core git project can do,
+it is meant to provide object and packfile read and write access and basic
+server functions.
+
+
+Testing libGit
+=========================
+ 
+ cd test
+ make test
+
+Thats about it.  It's a pretty simple testing framework, but it'll do.
+
+
+TODO
+=========================
+
+  Examples : genx
+  Ruby Bindings : 
+    http://www.onlamp.com/pub/a/onlamp/2004/11/18/extending_ruby.html
+
+Authors
+=========================
+
+ * Scott Chacon <schacon@gmail.com>
