@@ -2,39 +2,76 @@
  * libGit
  */
 
-#define LIBGIT_VERSION "0.1"
-
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 
 #include "git.h"
 
+struct git_object {
+	char	type;
+	int		size;
+	char	sha[40];
+};
+	
+struct git_tree_node {
+	char				mode[7];
+	struct git_object	*object;
+	char				name[255];
+};
+
+struct git_commit_data {
+	char				*author_name;
+	int					author_date;
+	char				*committer_name;
+	int					committer_date;
+	struct git_object	*tree;
+	struct git_parent	*parent;
+	char				*message;
+};
+
+struct git_parent {
+	struct git_object	*object;
+	struct git_parent	*parent;
+};
+	
 static const char *git_repo_dir;
 
 /*
  * sets up git environment for the rest of the methods
  */
-static void git_setup(char *git_directory)
+void git_setup(char *git_directory)
 {
 	git_repo_dir = git_directory;
 }
 
+/*
+ * return git_object struct of object pointed to by sha
+ */
+struct git_object git_get_object(char *sha)
+{
+	struct git_object object;
+	strcpy(object.sha, sha);
+	return object;
+}
+
+char *git_get_contents(struct git_object obj)
+{
+	return "contents";
+}
 
 /*
- * return version
+ * return version of libgit
  */
 char *libgit_version()
 {
   return LIBGIT_VERSION;
 }
 
-
 /*
- * libgit test driver
+ * return git repository directory
  */
-int main(int argc, char *argv[])
+const char *get_git_repo_dir()
 {
-	git_setup(".git");
-	fprintf(stderr, "gd: %s\n", git_repo_dir);
+  return git_repo_dir;
 }

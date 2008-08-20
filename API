@@ -11,8 +11,6 @@ OBJECTS
 
  git_get_object(sha)
 
- git_type_to_flag(type)
-
  git_object_from_sha(sha)
 
  git_get_raw_object(sha1)

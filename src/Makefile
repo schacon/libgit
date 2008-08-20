@@ -1,4 +1,4 @@
-CFLAGS=-g -Wall -O3
+CFLAGS=-fPIC -g -c -Wall -O3
 
 all:
-	gcc -o testgit git*.c -lm
+	gcc $(CFLAGS) git.c
