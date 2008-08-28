@@ -10,12 +10,43 @@
 #define OBJ_OFS_DELTA = 6
 #define OBJ_REF_DELTA = 7
 
+
+typedef struct {
+	char	type;
+	int		size;
+	unsigned char	rawsha[20];
+} git_object;
+	
+typedef struct {
+	char				mode[7];
+	struct git_object	*object;
+	char				name[255];
+} git_tree_node;
+
+typedef struct {
+	char				*author_name;
+	int					author_date;
+	char				*committer_name;
+	int					committer_date;
+	struct git_object	*tree;
+	struct git_parent	*parent;
+	char				*message;
+} git_commit_data;
+
+typedef struct {
+	struct git_object	*object;
+	struct git_parent	*parent;
+} git_parent;
+
+
 void git_setup(char *git_directory);
 
-struct git_object git_get_object(char *sha);
+//git_object git_get_object(char *sha);
 
-char *git_get_contents(struct git_object obj);
+char *git_loose_path_from_sha(char *sha1);
+
+char *git_get_contents(git_object obj);
 
 char *libgit_version();
 
-const char *get_git_repo_dir();
+char *get_git_repo_dir();
